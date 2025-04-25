@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pratik - Technical Project Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --background-color: #f9f9f9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Mobile Nav Toggle */
+        .mobile-nav-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('/api/placeholder/1920/1080') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h2 {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.2s;
+            animation-fill-mode: both;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.4s;
+            animation-fill-mode: both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            animation: fadeInUp 1s ease 0.6s;
+            animation-fill-mode: both;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background-color: var(--secondary-color);
+            bottom: -10px;
+            left: 25%;
+        }
+
+        /* About Section */
+        #about {
+            background-color: white;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .about-img {
+            flex: 1;
+        }
+
+        .about-img img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+        }
+
+        .skills {
+            margin-top: 30px;
+        }
+
+        .skills h3 {
+            margin-bottom: 15px;
+        }
+
+        .skill-item {
+            margin-bottom: 10px;
+        }
+
+        .skill-name {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .skill-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background-color: var(--secondary-color);
+            border-radius: 5px;
+            width: 0;
+            transition: width 1s ease;
+        }
+
+        /* Experience Section */
+        #experience {
+            background-color: var(--light-color);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid var(--secondary-color);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+
+        .left {
+            left: 0;
+            text-align: right;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .left::after {
+            right: -10px;
+        }
+
+        .right::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .timeline-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .timeline-content h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .timeline-content .date {
+            font-style: italic;
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        .timeline-content ul {
+            margin-left: 20px;
+        }
+
+        .timeline-content ul li {
+            margin-bottom: 5px;
+        }
+
+        /* Education Section */
+        #education {
+            background-color: white;
+        }
+
+        .education-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .education-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .education-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .education-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .education-card h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .education-card p {
+            color: #777;
+            margin-bottom: 5px;
+        }
+
+        /* Certifications Section */
+        #certifications {
+            background-color: var(--light-color);
+        }
+
+        .cert-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .cert-item {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .cert-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .cert-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .cert-item p {
+            color: #777;
+            font-style: italic;
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: white;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+            width: 20px;
+        }
+
+        .contact-form h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .footer-text p {
+            margin-bottom: 10px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .left {
+                text-align: left;
+            }
+            
+            .right {
+                left: 0;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .mobile-nav-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                padding: 20px;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero h2 {
+                font-size: 20px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Pratik</h1>
+            </div>
+            <button class="mobile-nav-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Pratik</h1>
+                <h2>Technical Project Manager & Business Analyst</h2>
+                <p>Delivering efficient, innovative, and cost-effective solutions with a track record of success in diverse projects.</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn">Contact Me</a>
+                    <a href="#experience" class="btn btn-outline">View Experience</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="/api/placeholder/500/500" alt="Pratik's Profile">
+                </div>
+                <div class="about-text">
+                    <h3>Technical Project Manager & Business Analyst</h3>
+                    <p>Experienced Technical Project Manager and Business Analyst with a proven track record of delivering successful outcomes in diverse projects including acquisition integration, implementation, contingency planning, divestiture execution, data analysis, and process optimization.</p>
+                    <p>Skilled in DevOps, data analysis, business model analysis, process improvement, requirements analysis, strategy systems, and data analysis. Committed to efficient, innovative, and cost-effective solutions, achieving up to 20% operational efficiency.</p>
+                    
+                    <div class="skills">
+                        <h3>Key Skills</h3>
+                        <div class="skill-item">
+                            <div class="skill-name">Project Management</div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Business Analysis</div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Agile Methodologies</div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Data Analysis</div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Process Optimization</div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">AI Integration</div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-title">
+                <h2>Professional Experience</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>Technical Project Manager</h3>
+                        <h4>Capital Health New Jersey</h4>
+                        <div class="date">July 2024 - Present</div>
+                        <ul>
+                            <li>Devised Project Charter, Project Plan, Milestones and Deliverables for Workday HCM Module and Prism implementation.</li>
+                            <li>Designed and implemented Agentic AI-driven solutions within Workday, reducing manual intervention by 40%.</li>
+                            <li>Facilitated Agile ceremonies, increasing deliverables by 20%.</li>
+                            <li>Enhanced process efficiency by 30% through business transformation strategies.</li>
+                            <li>Extracted and analyzed data using SQL, Excel, and created Power BI dashboards.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>IT Project Manager</h3>
+                        <h4>National Grid New York</h4>
+                        <div class="date">March 2022 - June 2024</div>
+                        <ul>
+                            <li>Led infrastructure migration and compliance initiatives, reducing audit-related findings by 20%.</li>
+                            <li>Leveraged Azure DevOps for full lifecycle project management, maintaining 95% on-schedule deployment rate.</li>
+                            <li>Improved build/test automation efficiency by 35% through CI/CD pipeline coordination.</li>
+                            <li>Implemented data governance framework resulting in 20% higher data accuracy in executive dashboards.</li>
+                            <li>Centralized fragmented systems, improving cross-entity data consistency by 30%.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>Business Process Analyst</h3>
+                        <h4>Lead Squared New Jersey</h4>
+                        <div class="date">November 2021 - March 2022</div>
+                        <ul>
+                            <li>Implemented LeadSquared CRMs and ERPs with 10% project deviation.</li>
+                            <li>Developed comprehensive process documentation including swim-lane diagrams, RACI matrices, and SIPOC charts.</li>
+                            <li>Managed department-wide initiative tracking using project planning tools.</li>
+                            <li>Performed data analysis using SQL and Python to identify data relationships.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>Business Process Engineer</h3>
+                        <h4>Fidelity Massachusetts</h4>
+                        <div class="date">September 2021 - November 2021</div>
+                        <ul>
+                            <li>Devised Jira Align workflow and created standardized templates for teams across domains.</li>
+                            <li>Conducted root cause analysis and implemented corrective actions to improve process flow.</li>
+                            <li>Executed client onboarding solutions with end-to-end ownership.</li>
+                            <li>Developed JQL, Groovy, and CLI scripts for Jira automation.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>Technical Project Analyst</h3>
+                        <h4>National Grid Massachusetts</h4>
+                        <div class="date">March 2020 - September 2021</div>
+                        <ul>
+                            <li>Defined project management processes for Scaled Agile Framework, increasing efficiency by 20%.</li>
+                            <li>Implemented IT policies and procedures, reducing downtime by 15%.</li>
+                            <li>Automated and developed Jira and Confluence projects, decreasing manual tasks by 30%.</li>
+                            <li>Led sprint planning, reviews, retrospectives, and daily scrums as Scrum Master.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>Technical Project Coordinator</h3>
+                        <h4>National Grid Massachusetts</h4>
+                        <div class="date">September 2019 - March 2020</div>
+                        <ul>
+                            <li>Coordinated Azure DevOps services deployment, improving code deployment speed by 30%.</li>
+                            <li>Assisted in GitHub-Azure DevOps Pipeline integration, reducing manual efforts by 40%.</li>
+                            <li>Coordinated containerization initiatives using Docker and Kubernetes, enhancing scalability by 25%.</li>
+                            <li>Organized training sessions, achieving 90% tool adoption rate within 3 months.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <div class="section-title">
+                <h2>Education</h2>
+            </div>
+            <div class="education-cards">
+                <div class="education-card">
+                    <h3>Master of Science in Business Analytics</h3>
+                    <h4>Trine University</h4>
+                    <p>Detroit, Michigan</p>
+                    <p>December 2024</p>
+                </div>
+                <div class="education-card">
+                    <h3>Master of Science in Project Management</h3>
+                    <h4>Northeastern University</h4>
+                    <p>Boston, Massachusetts</p>
+                    <p>June 2019</p>
+                </div>
+                <div class="education-card">
+                    <h3>Bachelor's in Commerce (Accounting and Finance)</h3>
+                    <h4>Mumbai University</h4>
+                    <p>India</p>
+                    <p>June 2012</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications">
+        <div class="container">
+            <div class="section-title">
+                <h2>Certifications</h2>
+            </div>
+            <div class="cert-container">
+                <div class="cert-item">
+                    <h3>Generative AI Overview for PM</h3>
+                    <p>PMI, October 2024</p>
+                </div>
+                <div class="cert-item">
+                    <h3>AI for Product Management</h3>
+                    <p>Pendo.io, January 2024</p>
+                </div>
+                <div class="cert-item">
+                    <h3>Gen AI</h3>
+                    <p>DataBricks, January 2024</p>
+                </div>
+                <div class="cert-item">
+                    <h3>Product Owner/Product Manager</h3>
+                    <p>Scaled Agile Framework 5.0, July 2021</p>
+                </div>
+                <div class="cert-item">
+                    <h3>Azure Fundamental</h3>
+                    <p>Microsoft, May 2021</p>
+                </div>
+                <div class="cert-item">
+                    <h3>Design Thinking Practitioner</h3>
+                    <p>IBM, October 2020</p>
+                </div>
+                <div class="cert-item">
+                    <h3>Professional Scrum Master (PSM)</h3>
+                    <p>Scrum.Org, March 2019</p>
+                </div>
+                <div class="cert-item">
+                    <h3>Green Belt Lean Six Sigma</h3>
+                    <p>Six Sigma Institute, December 2017</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Me</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <p><i class="fas fa-phone"></i> (857)-272-6187</p>
+                    <p><i class="fas fa-envelope"></i> scrum.pratik@gmail.com</p>
+                    <p><i class="fab fa-linkedin"></i> linkedin.com/in/liveyourpotential</p>
+                    <p><i class="fas fa-map-marker-alt"></i> New Jersey, USA</p>
+                </div>
+                <div class="contact-form">
+                    <h3>Send Me a Message</h3>
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/liveyourpotential" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+            <div class="footer-text">
+                <p>&copy; 2025 Pratik. All Rights Reserved.</p>
+                <p>Technical Project Manager & Business Analyst</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+        const navMenu = document.querySelector('nav ul');
+        
+        mobileNavToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetSection.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu when clicking a link
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+
+        // Skill Bar Animation
+        const skillBars = document.querySelectorAll('.skill-progress');
+        
+        const animateSkillBars = () => {
+            skillBars.forEach(bar => {
+                const targetWidth = bar.style.width;
+                bar.style.width = '0';
+                setTimeout(() => {
+                    bar.style.width = targetWidth;
+                }, 200);
+            });
+        };
+        
+        // Animate skill bars when the about section is visible
+        const aboutSection = document.querySelector('#about');
+        
+        const checkVisibility = () => {
+            const rect = aboutSection.getBoundingClientRect();
+            const isVisible = rect.top <= window.innerHeight && rect.bottom >= 0;
+            
+            if (isVisible) {
+                animateSkillBars();
+                window.removeEventListener('scroll', checkVisibility);
+            }
+        };
+        
+        window.addEventListener('scroll', checkVisibility);
+        
+        // Check on page load
+        checkVisibility();
+        
+        // Contact Form Handling
+        const contactForm = document.getElementById('contact-form');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Simple validation
+            if (!name || !email || !subject || !message) {
+                alert('Please fill all fields');
+                return;
+            }
+            
+            // In a real website, you would send this data to a server
+            // For now, we'll just show a success message
+            alert('Thank you for your message! I will get back to you soon.');
+            contactForm.reset();
+        });
+        
+        // Add fade-in animation for sections
+        const sections = document.querySelectorAll('section');
+        
+        const fadeInSections = () => {
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const isSectionVisible = sectionTop < window.innerHeight - 100;
+                
+                if (isSectionVisible) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Initial styles for sections
+        sections.forEach(section => {
+            if (section.id !== 'hero') {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(50px)';
+                section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            }
+        });
+        
+        window.addEventListener('scroll', fadeInSections);
+        
+        // Check on page load
+        fadeInSections();
+        
+        // Timeline animation
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        
+        const animateTimeline = () => {
+            timelineItems.forEach(item => {
+                const itemTop = item.getBoundingClientRect().top;
+                const isItemVisible = itemTop < window.innerHeight - 100;
+                
+                if (isItemVisible) {
+                    item.classList.add('animate');
+                }
+            });
+        };
+        
+        // Initial styles for timeline items
+        timelineItems.forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = item.classList.contains('left') 
+                ? 'translateX(-50px)' 
+                : 'translateX(50px)';
+            item.style.transition = `opacity 0.6s ease ${index * 0.2}s, transform 0.6s ease ${index * 0.2}s`;
+            
+            item.classList.add('animate-ready');
+        });
+        
+        // Add animation class when visible
+        const animateTimelineItems = () => {
+            timelineItems.forEach(item => {
+                const itemTop = item.getBoundingClientRect().top;
+                const isItemVisible = itemTop < window.innerHeight - 100;
+                
+                if (isItemVisible && item.classList.contains('animate-ready')) {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateX(0)';
+                    item.classList.remove('animate-ready');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateTimelineItems);
+        
+        // Check on page load
+        animateTimelineItems();
+        
+        // Certificates animation
+        const certItems = document.querySelectorAll('.cert-item');
+        
+        certItems.forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            item.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
+        });
+        
+        const animateCertItems = () => {
+            certItems.forEach(item => {
+                const itemTop = item.getBoundingClientRect().top;
+                const isItemVisible = itemTop < window.innerHeight - 100;
+                
+                if (isItemVisible) {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateCertItems);
+        
+        // Check on page load
+        animateCertItems();
